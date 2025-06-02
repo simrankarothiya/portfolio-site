@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio Site</title>
+  <style>
+    .navbar {
+      text-align: right;
+      color: aliceblue;
+      margin-right: 80px;
+      height: 50px;
+      padding-top: 20px;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: black;
+    }
+
+    .blob {
+      position: fixed;
+      top: 100px;
+      left: 100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #ffd700 0%, transparent 70%);
+      filter: blur(100px);
+      z-index: -1;
+      animation: blob 15s infinite ease-in-out;
+    }
+
+    #typing-text {
+      font-size: 2.8rem;
+      font-weight: bold;
+      border-right: 3px solid;
+      white-space: nowrap;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+      padding-left: 400px;
+
+    }
+
+
+    @keyframes blob {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      50% {
+        transform: translate(300px, 100px);
+      }
+
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+
+    a {
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      color: #cfbb4a;
+    }
+
+    #theme-toggle {
+      cursor: pointer;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 20px;
+      z-index: 999;
+    }
+
+    header .text {
+      text-align: center;
+      position: fixed;
+      overflow: hidden;
+      padding: 100px 20px 50px;
+    }
+
+    #sk {
+      text-align: center;
+      padding-top: 80px;
+      color: white;
+    }
+
+    #s {
+      text-align: center;
+      color: white;
+    }
+
+    .about-section,
+    .skills-section {
+      background: rgba(255, 255, 255, 0.08);
+      margin: 30px auto;
+      max-width: 800px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(15px);
+      color: white;
+      padding: 30px;
+
+    }
+
+    .project-section {
+      background: rgba(255, 255, 255, 0.08);
+      margin: 30px auto;
+      max-width: 800px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(15px);
+      color: white;
+      padding: 30px;
+    }
+
+    .images img {
+      width: 300px;
+      height: 150px;
+      border-radius: 20px;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      border-color: red;
+      float: left;
+      margin-right: 20px;
+      border: #ffdf32;
+    }
+
+    .images img:hover{
+      border-color: green;
+    }
+    .skills {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px;
+      scroll-behavior: smooth;
+    }
+
+    /* .skills::-webkit-scrollbar {
+      display: none;
+    } */
+
+    .skills {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .SS img {
+      width: 200px;
+      height: 100px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .SS img:hover {
+      transform: scale(1.08);
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      margin: 20px 0;
+      padding: 20px;
+      /* border-left: 5px solid var(--primary); */
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: scale(1.03);
+    }
+
+    .project-content .content {
+      flex: 1;
+      color: white;
+      text-align: right;
+    }
+
+    .project-content {
+      display: flex;
+      gap: 20px;
+      text-align: end;
+      flex-wrap: wrap;
+    }
+
+    .contact {
+      background: rgba(255, 255, 255, 0.08);
+      margin: 30px auto;
+      max-width: 800px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(15px);
+      color: white;
+      padding: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 10px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    input,
+    textarea {
+      padding: 15px;
+      font-size: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #ffd700;
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    textarea {
+      min-height: 120px;
+      background: rgba(255, 255, 150, 0.2);
+      resize: vertical;
+    }
+
+    button {
+      background: linear-gradient(to right, #ffd700, #ffcc00);
+      color: black;
+      padding: 15px;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #ffcc00, #ffdf32);
+      transform: scale(1.05);
+    }
+
+    .PP img {
+      height: 50;
+      width: 200px;
+      border-radius: 20%;
+      column-gap: 0cap;
+      float: right;
+
+
+    }
+
+    .empty-box{
+      background-color: #cfbb4a;
+      width:1100px;
+      height:5px;
+      margin-left: 120px;
+      
+
+    }
+    .empty-box h2{
+      color: aliceblue;
+      padding-top: 100px;
+     font-family: Arial, Helvetica, sans-serif;
+     
+    }
+    .empty-box h1 {
+      color: white;
+    }
+ .empty-box a {
+      color: white;
+      padding-top: 50px;
+      margin-left: 60px;
+    }
+
+    .contact-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  line-height: 2;
+}
+
+.contact-list li {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.contact-list a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+.contact-list a:hover {
+  text-decoration: underline;
+}
+.container .section-title{
+  vertical-align: top;
+  justify-content: flex-start;
+}
+
+.Link-list{
+  list-style:none;
+  padding: 0;
+  margin-top: 1rem;
+  line-height: 2;
+}
+
+
+.footer{
+  text-align: center;
+  color: aliceblue;
+
+}
+/* .container img{
+  float:center;
+  height: 200px;
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10%;
+  /* max-width: 100%;
+  height: auto; */
+}
+
+.container{
+  margin-top: 80px;
+  margin-bottom: 80px;;
+
+} */
+  </style>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <a href="#Home">Home</a>
+    <a href="#About Me">About Me</a>
+    <a href="#Contact">Contact</a>
+    <a href="#Projects">Projects</a>
+    <a href="#Skills">Skills</a>
+  </div>
+
+  <br>
+  <br><br><br><br>
+
+  <div id="theme-toggle">🌙</div>
+  <div class="blob"></div>
+
+  <header class="text">
+    <h1><span id="typing-text"></span></h1>
+    <!-- <h1 id="sk">"Hi, I'm Simran Karothiya 👋"</h1> -->
+    <p id="s">B.Tech CSD @ MITS | Frontend Developer</p>
+  </header>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <section class="about-section" id="about-section">
+    <h2>👩‍💻 About me</h2>
+    <div class="PP">
+      <img src="photos/5.jpg">
+    </div>
+    </div>
+    <p>
+      Hi there! I'm Simran Karothiya, a passionate B.Tech student specializing in Computer Science and Design at Madhav
+      Institute of Technology and Science. I believe that great technology is born at the intersection of logic and
+      creativity — and that's exactly where I love to work.
+    </p>
+    <p>
+      I design and develop modern, responsive websites using HTML, CSS, and JavaScript. Whether it’s crafting sleek user
+      interfaces or writing clean code behind the scenes, I strive to create digital experiences that are both
+      functional and beautiful.
+    </p>
+  </section>
+
+  <section class="skills-section" id="skills-section">
+    <h2>💻Skills</h2>
+    <div class="skills">
+      <div class="SS"><img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoIQHA1-1Z5Z3yCPMhBKaNDBdzPD7z1MGHTA&s" alt="HTML">
+      </div>
+      <div class="SS"><img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2z58zRodZkBtFv4dDm5QkhfU1qI1twbJMKQ&s" alt="CSS">
+      </div>
+      <div class="SS"><img
+          src="photos/6.png">
+      </div>
+      <div class="SS"><img
+          src="photos/7.png"
+          alt="C++"></div>
+
+      <div class="SS"><img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSckCaKx6LJQeYyKe9_pGU05RiMFoYAvuuazw&s" alt="Git">
+      </div>
+
+    </div>
+  </section>
+  <section class="project-section" id="project-section">
+    <h2>💡Projects</h2>
+    <div class="project-card">
+      <h3>Photography site</h3>
+      <div class="images"><img src="photos/1.png"></div>
+      <div class="content">
+        <p>Welcome to Simran’s Photography – where every photograph tells a story. I’m a passionate photographer
+          dedicated to capturing life’s most beautiful and genuine moments. From emotional wedding shots to serene
+          landscapes and joyful portraits, my lens aims to freeze memories you’ll cherish forever. Let’s turn your
+          special moments into timeless frames."</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <h3>Spotify site</h3>
+      <div class="images"><img src="photos/2.png"></div>
+      <p>"Welcome to My Music World – a sleek and modern music player inspired by Spotify! Here, you can experience
+        seamless audio streaming with a clean interface, smooth controls, and dynamic playlists. Built using HTML, CSS,
+        and JavaScript, this web app brings your favorite songs to life with an engaging and responsive design. Whether
+        you're chilling, working, or partying – just hit play and let the music flow!"
+
+      </p>
+    </div>
+    <div class="project-card" id="project-card">
+      <h3>portfolio</h3>
+      <div class="images"><img src="photos/3.png"></div>
+      <p>"Hi, I'm Simran Karothiya – a Computer Science and Design student with a passion for coding, creativity, and
+        continuous learning. I love building beautiful websites that are both functional and user-friendly. From
+        frontend design to interactive JavaScript features, I enjoy turning ideas into digital experiences. Explore my
+        portfolio to see my projects, skills, and the journey I'm on in the tech world!"</p>
+    </div>
+   
+   
+
+    
+
+  </section>
+
+  <section class="contact" id="Contact">
+    <h2>📩 Contact Me</h2>
+    <form id="contact-section">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder=" Your Email" required />
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <br><br><br>
+
+ <div class="empty-box"></div>
+   <h2 style="text-align: center;color: white";>🍃Simran Karothiya🍃</h2>
+  <section id="contact" class="section contact">
+  <div class="container">
+    <!-- <img src="https://images.shiksha.com/mediadata/images/1744273030phpf5jyj3.jpeg"> -->
+    <h2 class="section-title">Contact Me</h2>
+    <ul class="contact-list">
+     
+      
+    <li><strong><a href="mailto:simrankarothiya768@gmail.com">Email</a></li>
+      
+      <li> <a href="https://www.linkedin.com/in/simran-karothiya-184420327/" target="_blank">Linked in</a></li>
+      <li><a href="https://github.com/simrankarothiya"target="_blank">GitHub</a></li>
+      
+    </ul>
+  </div>
+  <div class="container">
+    <h2 class="section-title">Links</h2>
+    <ul class="Link-list">
+      <li><a href="https://www.codechef.com/users/simrank1" target="_blank">Codechef</a></li>
+      <li><a href="https://leetcode.com/u/SimranK1/" target="_blank">Leetcode</a></li>
+</ul>
+  </div>
+
+</section>
+   
+<div class="empty-box"></div>
+<footer class="footer">
+<p>© 2025 Simran Karothiya. All rights reserved.</p>
+<p>Made with ❤️ by Simran Karothiya</p>
+</footer>
+ 
+
+</body>
+<script>
+  const typingText = "Hi, I'm Simran Karothiya 👋";
+  let i = 0;
+  function typeWriter() {
+    if (i < typingText.length) {
+      document.getElementById("typing-text").innerHTML += typingText.charAt(i);
+      i++;
+      setTimeout(typeWriter, 50);
+    }
+  }
+  typeWriter();
+</script>
+
+</html>
